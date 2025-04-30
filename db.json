@@ -1,0 +1,30 @@
+{
+  "products": [
+    {
+      "title": "Mens Casual Premium Slim Fit T-Shirts ",
+      "price": 22,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "id": "2"
+    },
+    {
+      "id": "9cfa",
+      "title": "chemise ",
+      "price": 61,
+      "description": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+      "category": "homme",
+      "image": "https://celio.tn/media/catalog/product/cache/4016b84d5a054a204d2f432873e2b9b5/1/5/156912-417-DAFLIX_YELLOW-3_1_5.jpg"
+    },
+    {
+      "id": "b560",
+      "title": "chemise femme",
+      "price": 90,
+      "description": "hihihihih",
+      "category": "femme",
+      "image": "https://asset.promod.com/product/160367-gz-1674666331.jpg?auto=webp&quality=80&crop=10:15"
+    }
+  ],
+  "users": [],
+  "orders": []
+}

@@ -1,0 +1,61 @@
+<nav class="navbar">
+    <div class="container-fluid">
+        <!-- Logo et titre -->
+        <div class="navbar-brand">
+            <button class="menu-toggle" (click)="sidebarToggle()">
+                <i class="material-icons">menu</i>
+            </button>
+            <a class="logo" routerLink="/">
+                <span class="logo-text">ShopX</span>
+            </a>
+        </div>
+
+        <!-- Navigation principale -->
+        <div class="navbar-menu">
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a routerLink="/" class="nav-link" routerLinkActive="active">
+                        <i class="material-icons">home</i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/products" class="nav-link" routerLinkActive="active">
+                        <i class="material-icons">shopping_bag</i>
+                        <span>Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/cart" class="nav-link" routerLinkActive="active">
+                        <i class="material-icons">shopping_cart</i>
+                        <span>Panier</span>
+                        <span class="cart-badge" *ngIf="cartItemCount > 0">{{cartItemCount}}</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Barre de recherche -->
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher un produit..." class="search-input">
+                <button class="search-button">
+                    <i class="material-icons">search</i>
+                </button>
+            </div>
+
+            <!-- Actions utilisateur -->
+            <div class="user-actions">
+                <button class="action-button" matTooltip="Favoris">
+                    <i class="material-icons">favorite_border</i>
+                </button>
+                <button class="action-button" matTooltip="Notifications">
+                    <i class="material-icons">notifications_none</i>
+                    <span class="notification-badge" *ngIf="notificationCount > 0">{{notificationCount}}</span>
+                </button>
+                <button class="action-button profile-button" matTooltip="Mon compte">
+                    <i class="material-icons">account_circle</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+  
