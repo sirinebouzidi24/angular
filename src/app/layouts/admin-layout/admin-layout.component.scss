@@ -7,18 +7,27 @@ $border-color: #e0e0e0;
 
 // Layout styles
 .wrapper {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    background-color: $light-gray;
+    position: relative;
+    top: 0;
+    height: 100vh;
+    background-color: #fff;
 }
 
 // Sidebar styles
 .sidebar {
-    width: 250px;
-    background: white;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 260px;
+    display: block;
+    z-index: 1;
+    color: #fff;
+    font-weight: 200;
+    background-size: cover;
+    background-position: center center;
+    background-color: #1e1e2d;
+    transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
     
     .sidebar-header {
         padding: 20px;
@@ -35,36 +44,45 @@ $border-color: #e0e0e0;
 
 // Main panel styles
 .main-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    position: relative;
+    float: right;
+    width: calc(100% - 260px);
+    min-height: 100%;
+    transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1);
+    background-color: #fff;
+
+    &.full-width {
+        width: 100%;
+        float: none;
+    }
 }
 
 // Content area
 .content {
-    flex: 1;
-    padding: 20px;
-    background-color: white;
-    margin: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 70px;
+    padding: 30px 15px;
+    min-height: calc(100vh - 123px);
+    background-color: #fff;
+    
+    .container-fluid {
+        padding: 0;
+        max-width: 100%;
+    }
 }
 
 // Footer styles
 .footer {
-    background: white;
-    padding: 20px;
-    border-top: 1px solid $border-color;
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #e7e7e7;
     
     .footer-link {
-        color: $text-color;
+        color: #666;
         text-decoration: none;
-        margin-left: 20px;
-        transition: color 0.3s;
+        margin-left: 15px;
         
         &:hover {
-            color: $primary-color;
+            color: #333;
         }
     }
 }
@@ -79,9 +97,11 @@ $border-color: #e0e0e0;
     
     .main-panel {
         margin-left: 0;
+        width: 100%;
     }
     
     .content {
-        margin: 10px;
+        margin: 10px 0;
+        padding: 15px;
     }
 }

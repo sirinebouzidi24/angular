@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { ClientLoginComponent } from './components/client-login/client-login.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { ClientLoginComponent } from './components/client-login/client-login.com
     ProduitsssComponent,
     ConfirmDialogComponent,
     AdminLoginComponent,
-    ClientLoginComponent
+    ClientLoginComponent,
+    AccueilComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

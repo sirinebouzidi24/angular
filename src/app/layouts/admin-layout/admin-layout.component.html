@@ -1,7 +1,7 @@
 <!-- Main wrapper -->
 <div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="sidebar">
+    <!-- Sidebar - hidden on cart and products pages -->
+    <nav id="sidebar" class="sidebar" *ngIf="!isCartOrProductsPage()">
         <div class="sidebar-header">
             <h3>ShopX</h3>
         </div>
@@ -9,15 +9,13 @@
     </nav>
 
     <!-- Main content -->
-    <div class="main-panel">
-        <!-- Navbar - affichée uniquement pour les non-admin -->
-        <app-navbar *ngIf="!isAdmin"></app-navbar>
+    <div class="main-panel" [ngClass]="{'full-width': isCartOrProductsPage()}">
+        <!-- Navbar - toujours visible -->
+        <app-navbar></app-navbar>
         
         <!-- Main content area -->
         <div class="content">
-            <div class="container-fluid">
-                <router-outlet></router-outlet>
-            </div>
+            <router-outlet></router-outlet>
         </div>
 
         <!-- Footer -->

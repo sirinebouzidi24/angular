@@ -54,7 +54,7 @@ export class TableListComponent implements OnInit {
     }
   }
 
-  openDeleteDialog(productId: number) {
+  openDeleteDialog(productId: string) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: {
@@ -72,8 +72,8 @@ export class TableListComponent implements OnInit {
     });
   }
 
-  private deleteProduct(productId: number) {
-    this.productsService.deleteProduct(productId.toString()).subscribe({
+  private deleteProduct(productId: string) {
+    this.productsService.deleteProduct(productId).subscribe({
       next: () => {
         this.products = this.products.filter(p => p.id !== productId);
         this.filteredProducts = this.filteredProducts.filter(p => p.id !== productId);
@@ -85,7 +85,7 @@ export class TableListComponent implements OnInit {
     });
   }
 
-  trackByProductId(index: number, product: Product): number {
+  trackByProductId(index: number, product: Product): string {
     return product.id;
   }
 }

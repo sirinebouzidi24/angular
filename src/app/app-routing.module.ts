@@ -9,26 +9,22 @@ import { TableListComponent } from './table-list/table-list.component';
 import { ProduitsssComponent } from './administrateur/produitsss/produitsss.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: 'accueil', component: AccueilComponent },
   { path: 'products', component: AllProductsComponent },
-  { path: 'ajouterproduit', component:ArticleFormComponent },
-
+  { path: 'ajouterproduit', component: ArticleFormComponent },
   { path: 'details/:id', component: ProductsDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'dashboard', component: DashboardComponent }, 
   { path: 'listesproduits', component: TableListComponent },
   { path: 'admin', component: ProduitsssComponent }, 
-
-  {path:':id/edit',//:id=>pour dire que cest dynamique quil change
-    pathMatch:'full',
-    component:ArticleFormComponent
-    },
+  { path: ':id/edit', pathMatch: 'full', component: ArticleFormComponent },
   { path: 'admin/login', component: AdminLoginComponent },
-  { path: '**', redirectTo: '/products' }
-   // Redirection pour les routes inconnues
-  ];
+  { path: '**', redirectTo: '/accueil' } // Redirection vers accueil pour les routes inconnues
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

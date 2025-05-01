@@ -16,12 +16,20 @@ export class AdminLayoutComponent implements OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   isAdmin: boolean = false;
+  currentRoute: string = '';
 
   constructor(
     public location: Location,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+    // Subscribe to router events to track current route
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.currentRoute = event.url;
+    });
+  }
 
   ngOnInit() {
     // Vérifier si l'utilisateur est admin
@@ -164,4 +172,9 @@ export class AdminLayoutComponent implements OnInit {
       return bool;
   }
 
+  isCartOrProductsPage(): boolean {
+    // Pages qui ne doivent pas afficher la sidebar
+    const pagesWithoutSidebar = ['/cart', '/products', '/accueil'];
+    return pagesWithoutSidebar.includes(this.currentRoute);
+  }
 }

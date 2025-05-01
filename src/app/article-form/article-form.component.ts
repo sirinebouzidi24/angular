@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'Services/products.service';
-import { Product } from '../Modeles/products';
+import { Product } from 'Modeles/products';
 
 @Component({
   selector: 'app-article-form',
@@ -12,8 +12,8 @@ import { Product } from '../Modeles/products';
 export class ArticleFormComponent implements OnInit {
 
   form: FormGroup;
-  idCourant!: number;
-  categories: string[] = ["men's clothing", "jewelery", "electronics", "women's clothing"];
+  idCourant: string = '';              // string, pas number
+  categories: string[] = ["enfant", "homme", "femme"];
   isEditMode: boolean = false;
 
   constructor(
@@ -32,42 +32,48 @@ export class ArticleFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const idParam = this.activatedRoute.snapshot.params['id'];
-    this.idCourant = idParam ? parseInt(idParam, 10) : 0;
-    this.isEditMode = !!this.idCourant;
-    console.log('ID courant :', this.idCourant);
+    // 1) On récupère l'id tel quel (string)
+    const idParam = this.activatedRoute.snapshot.params['id'] as string | undefined;
+    this.idCourant = idParam ?? '';
+    this.isEditMode = this.idCourant !== '';
 
+    // 2) Si mode édition, on patch le formulaire
     if (this.isEditMode) {
-      this.PS.getProductById(this.idCourant).subscribe(a => {
+      this.PS.getProductById(Number(this.idCourant)).subscribe(product => {
+
         this.form.patchValue({
-          title: a.title,
-          price: a.price,
-          description: a.description,
-          category: a.category,
-          image: a.image
+          title: product.title,
+          price: product.price,
+          description: product.description,
+          category: product.category,
+          image: product.image
         });
       });
     }
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      const productData: Product = {
-        ...this.form.value,
-        id: this.isEditMode ? this.idCourant : undefined,
-        isFavorite: false
-      };
+  onSubmit(): void {
+    if (!this.form.valid) {
+      return;
+    }
 
-      if (this.isEditMode) {
-        this.PS.UpdateProduct(this.idCourant.toString(), productData)
-          .subscribe(() => {
-            this.router.navigate(['/listesproduits']);
-          });
-      } else {
-        this.PS.AddProduct(productData).subscribe(() => {
-          this.router.navigate(['/listesproduits']);
-        });
-      }
+    // 3) Prépare l'objet Product (id: string | undefined)
+    const productData: Product = {
+      ...this.form.value,
+      id: this.isEditMode ? this.idCourant : undefined,
+      isFavorite: false
+    };
+
+    // 4) Appel au service
+    if (this.isEditMode) {
+      this.PS.UpdateProduct(this.idCourant, productData).subscribe(() => {
+        this.router.navigate(['/listesproduits']);
+      });
+    } else {
+      this.PS.AddProduct(productData).subscribe(() => {
+        this.router.navigate(['/listesproduits']);
+      });
     }
   }
+
 }
